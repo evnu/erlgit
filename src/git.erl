@@ -331,7 +331,7 @@ add_files(Repo, Files, Prefix) ->
 
 mv(Repo, Src, Dst) ->
     Src1 = filename:join(Repo, Src),
-    Dst1 = filename:join(Dst),
+    Dst1 = filename:join(Repo, Dst),
     sh("git mv ~s ~s", [Src1, Dst1]).
 
 get_commits(Repo, Refs) ->
