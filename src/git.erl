@@ -29,6 +29,7 @@
          diff_names/3,
 
          add_files/2,
+         mv/3,
          commit/2, amend_changes/1,
          tag/2,
          reset_hard/2
@@ -327,6 +328,11 @@ construct_change(ChangeType, Filename) ->
 
 add_files(Repo, Files, Prefix) ->
     sh("git add ~s", [string:join([filename:join(Prefix, F) || F <- Files], " ")], [{cd, Repo}]).
+
+mv(Repo, Src, Dst) ->
+    Src1 = filename:join(Repo, Src),
+    Dst1 = filename:join(Dst),
+    sh("git mv ~s ~s", [Src1, Dst1]).
 
 get_commits(Repo, Refs) ->
     RefStrs = join([ verstr(X) || X <- Refs], " "),
