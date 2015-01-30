@@ -330,9 +330,7 @@ add_files(Repo, Files, Prefix) ->
     sh("git add ~s", [string:join([filename:join(Prefix, F) || F <- Files], " ")], [{cd, Repo}]).
 
 mv(Repo, Src, Dst) ->
-    Src1 = filename:join(Repo, Src),
-    Dst1 = filename:join(Repo, Dst),
-    sh("git mv ~s ~s", [Src1, Dst1]).
+    sh("git mv ~s ~s", [Src, Dst], [{cd,Repo}]).
 
 get_commits(Repo, Refs) ->
     RefStrs = join([ verstr(X) || X <- Refs], " "),
